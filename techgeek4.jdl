@@ -1,0 +1,118 @@
+
+entity Professor {
+	firstname String
+    lastname String
+    address String
+    email String
+    phone String
+}
+
+entity Volunteer {
+	firstname String
+    lastname String
+    address String
+    email String
+    phone String
+}
+entity Video {
+	name String
+    description String
+    source String
+    startDate ZonedDateTime
+    endDate ZonedDateTime
+    premium Boolean
+}
+
+
+entity Live {
+	name String
+    description String
+    source String
+    startDate ZonedDateTime
+    endDate ZonedDateTime
+    premium Boolean
+}
+
+entity Course {
+	name String
+    description String
+}
+
+entity Student {
+	firstname String
+    lastname String
+    address String
+    email String
+    phone String
+}
+
+entity Supporter {
+	firstname String
+    lastname String
+    address String
+    email String
+    phone String
+}
+
+entity Influencer {
+	firstname String
+    lastname String
+    address String
+    email String
+    phone String
+}
+
+entity Module {
+	title String
+	description String
+    startDate ZonedDateTime
+    endDate ZonedDateTime
+}
+
+entity Level {
+	title String
+	description String
+}
+
+entity Category {
+	title String
+	description String
+}
+
+entity Language {
+	title String
+	description String
+}
+
+entity Framework {
+	title String
+	description String
+}
+
+relationship OneToMany {
+	Course to Module
+}
+
+
+relationship OneToOne {
+	Student to Level
+    Module to Category
+    Live to Module
+    Video to Module
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Professor to Module
+    Volunteer to Module
+    Student to Module
+    Supporter to Category
+    Influencer to Category
+    Module to Framework
+    Module to Language
+}
+
+
+dto * with mapstruct
+paginate * with pagination
+service * with serviceClass

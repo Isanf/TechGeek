@@ -1,0 +1,33 @@
+{
+    "name": "Language",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "module",
+            "otherEntityRelationshipName": "language",
+            "relationshipName": "module",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20211210181600",
+    "entityTableName": "language",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

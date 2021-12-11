@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="module">
+            <h2><span>Module</span> {{ module.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Title</span></dt>
+                <dd>
+                    <span>{{ module.title }}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{ module.description }}</span>
+                </dd>
+                <dt><span>Start Date</span></dt>
+                <dd>
+                    <span>{{ module.startDate }}</span>
+                </dd>
+                <dt><span>End Date</span></dt>
+                <dd>
+                    <span>{{ module.endDate }}</span>
+                </dd>
+                <dt><span>Category</span></dt>
+                <dd>
+                    <div *ngIf="module.categoryId">
+                        <a [routerLink]="['/category', module.categoryId, 'view']">{{ module.categoryId }}</a>
+                    </div>
+                </dd>
+                <dt><span>Course</span></dt>
+                <dd>
+                    <div *ngIf="module.courseId">
+                        <a [routerLink]="['/course', module.courseId, 'view']">{{ module.courseId }}</a>
+                    </div>
+                </dd>
+                <dt><span>Professor</span></dt>
+                <dd>
+                    <div *ngIf="module.professorId">
+                        <a [routerLink]="['/professor', module.professorId, 'view']">{{ module.professorId }}</a>
+                    </div>
+                </dd>
+                <dt><span>Volunteer</span></dt>
+                <dd>
+                    <div *ngIf="module.volunteerId">
+                        <a [routerLink]="['/volunteer', module.volunteerId, 'view']">{{ module.volunteerId }}</a>
+                    </div>
+                </dd>
+                <dt><span>Student</span></dt>
+                <dd>
+                    <div *ngIf="module.studentId">
+                        <a [routerLink]="['/student', module.studentId, 'view']">{{ module.studentId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/module', module.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

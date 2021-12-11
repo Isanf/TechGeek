@@ -1,0 +1,47 @@
+{
+    "name": "Category",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "module",
+            "otherEntityRelationshipName": "category",
+            "relationshipName": "module",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "supporter",
+            "otherEntityRelationshipName": "category",
+            "relationshipName": "supporter",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "influencer",
+            "otherEntityRelationshipName": "category",
+            "relationshipName": "influencer",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20211210181500",
+    "entityTableName": "category",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

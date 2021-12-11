@@ -1,0 +1,107 @@
+<div>
+    <h2 id="page-heading">
+        <span>Modules</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-module" [routerLink]="['/module/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Module
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="modules?.length === 0">
+        <span>No modules found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="modules?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="title"><span>Title</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span>Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="startDate"><span>Start Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="endDate"><span>End Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="categoryId"><span>Category</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="courseId"><span>Course</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="professorId"><span>Professor</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="volunteerId"><span>Volunteer</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="studentId"><span>Student</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let module of modules ;trackBy: trackId">
+                    <td><a [routerLink]="['/module', module.id, 'view']">{{ module.id }}</a></td>
+                    <td>{{ module.title }}</td>
+                    <td>{{ module.description }}</td>
+                    <td>{{ module.startDate | date:'medium' }}</td>
+                    <td>{{ module.endDate | date:'medium' }}</td>
+                    <td>
+                        <div *ngIf="module.categoryId">
+                            <a [routerLink]="['/category', module.categoryId , 'view']" >{{ module.categoryId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="module.courseId">
+                            <a [routerLink]="['/course', module.courseId , 'view']" >{{ module.courseId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="module.professorId">
+                            <a [routerLink]="['/professor', module.professorId , 'view']" >{{ module.professorId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="module.volunteerId">
+                            <a [routerLink]="['/volunteer', module.volunteerId , 'view']" >{{ module.volunteerId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="module.studentId">
+                            <a [routerLink]="['/student', module.studentId , 'view']" >{{ module.studentId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/module', module.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/module', module.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(module)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="modules?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,19 @@
 # TechGeek
 
+Make JHipster in Production :
+
+1 - Remove unnessary dependancies, like Elastic-Search
+2 - Modify the Main Class and give , hostAddress = "0.0.0.0";
+3 - Modify the port in application-prod.yml from 8080 to 80
+4 - Copy the database and infos in developpement to the database in production
+5 - Give the Public IP address to a domain name, (Cloudflare for SSL)
+
+To change the default running address of Angular :
+
+1. Go to package.json
+2. Look for --port= and give it 80
+3. add --host=0.0.0.0 after --hot
+
 This application was generated using JHipster 6.8.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.8.0](https://www.jhipster.tech/documentation-archive/v6.8.0).
 
 ## Development
