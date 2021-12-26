@@ -1,1 +1,0 @@
-mvnw -Pprod clean verify
