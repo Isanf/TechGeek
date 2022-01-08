@@ -17,97 +17,99 @@
                 </a>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
+            <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                    <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
                         <span>
                             Entities
                         </span>
                     </span>
-                </a>
-                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-                    <li>
-                        <a class="dropdown-item" routerLink="professor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Professor</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="volunteer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Volunteer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="video" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Video</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="live" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Live</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="course" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Course</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="student" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Student</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="supporter" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Supporter</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="influencer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Influencer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="module" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Module</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="level" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Level</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="category" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Category</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="language" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Language</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="framework" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span>Framework</span>
-                        </a>
-                    </li>
-                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-                </ul>
-            </li>
+                    </a>
+                    <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                        <li>
+                            <a class="dropdown-item" routerLink="professor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Professor</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="volunteer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Volunteer</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="video" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Video</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="live" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Live</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="course" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Course</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="student" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Student</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="supporter" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Supporter</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="influencer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Influencer</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="module" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Module</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="level" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Level</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="category" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Category</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="language" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Language</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" routerLink="framework" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                                <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                                <span>Framework</span>
+                            </a>
+                        </li>
+                        <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                    </ul>
+                </li>
+            </div>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>

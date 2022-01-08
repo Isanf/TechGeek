@@ -37,6 +37,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  // Load Data after the Page is fully loaded
+  AfterViewInit(): void {
+    this.loadData();
+  }
+  loadData(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));
     this.liveService
       .findLast()

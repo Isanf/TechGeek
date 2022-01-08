@@ -31,12 +31,12 @@
                                     <div class="card">
                                         <div class="card-header">Today:{{startDateToday}}</div>
                                         <div class="card-body">
-                                            Name: {{livesToday.name}}
-                                            Description: {{livesToday.description}}
-                                            Module: {{lastModule?.title}}
+                                            Name: {{livesToday.name}}<br/>
+                                            Description: {{livesToday.description}}<br/>
+                                            Module: {{lastModule?.title}}<br/>
                                         </div>
                                         <div class="card-footer">
-                                            End:{{endDateToday}}
+                                            End: {{endDateToday}}<br/>
                                             <a href="https://techgeek-live.bigbahr.com/">
                                                 <button class="btn btn-success  ">
                                                     <fa-icon icon="plus"></fa-icon>
@@ -54,14 +54,14 @@
                                 <div class="card">
                                     <div *ngIf="livesLast != null;else content2" class="card-body">
                                         <div class="card">
-                                            <div class="card-header">Next Class:{{ startDate}}</div>
+                                            <div class="card-header">Next Class: {{ startDate}}</div>
                                             <div class="card-body">
-                                                Name:{{livesLast.name}}
-                                                Description:{{livesLast.description}}
-                                                Module: {{todayModule?.title}}
+                                                Name: {{livesLast.name}}<br/>
+                                                Description: {{livesLast.description}}<br/>
+                                                Module: {{todayModule?.title}}<br/>
                                             </div>
                                             <div class="card-footer">
-                                                End:{{endDate}}
+                                                End: {{endDate}}<br/>
                                             </div>
                                         </div>
                                     </div>
