@@ -1,5 +1,7 @@
 package com.epita.techgeek.web.rest;
 
+import com.epita.techgeek.domain.Live;
+import com.epita.techgeek.repository.LiveRepository;
 import com.epita.techgeek.service.LiveService;
 import com.epita.techgeek.web.rest.errors.BadRequestAlertException;
 import com.epita.techgeek.service.dto.LiveDTO;
@@ -13,13 +15,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,13 +35,14 @@ public class LiveResource {
     private final Logger log = LoggerFactory.getLogger(LiveResource.class);
 
     private static final String ENTITY_NAME = "live";
-
+    private final LiveRepository liveRepository;
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final LiveService liveService;
 
-    public LiveResource(LiveService liveService) {
+    public LiveResource(LiveRepository liveRepository, LiveService liveService) {
+        this.liveRepository = liveRepository;
         this.liveService = liveService;
     }
 
@@ -107,6 +110,35 @@ public class LiveResource {
     public ResponseEntity<LiveDTO> getLive(@PathVariable Long id) {
         log.debug("REST request to get Live : {}", id);
         Optional<LiveDTO> liveDTO = liveService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(liveDTO);
+    }
+
+
+    /**
+     * {@code GET  Next Program
+     *
+     * @param id the id of the liveDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the liveDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/lives/Last")
+    public ResponseEntity<LiveDTO> getLiveLast() {
+        ZonedDateTime actual
+            = ZonedDateTime.now();
+        Optional<Live> live = liveRepository.findFirstByStartDateGreaterThan(actual);
+        log.debug(" ***************************************** REST request to get Live : {}", live.get().getStartDate());
+        Optional<LiveDTO> liveDTO = liveService.findOne(live.get().getId());
+
+        return ResponseUtil.wrapOrNotFound(liveDTO);
+    }
+
+    @GetMapping("/lives/Today")
+    public ResponseEntity<LiveDTO> TodayLast() {
+        ZonedDateTime actual
+            = ZonedDateTime.now();
+        Optional<Live> live = liveRepository.findFirstByStartDateIsBetween(actual,actual.plusDays(1));
+        log.debug(" ***************************************** REST request to get Live : {}", live.get().getStartDate());
+        Optional<LiveDTO> liveDTO = liveService.findOne(live.get().getId());
+
         return ResponseUtil.wrapOrNotFound(liveDTO);
     }
 

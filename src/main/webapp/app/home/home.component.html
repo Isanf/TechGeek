@@ -17,35 +17,75 @@
 
             </div>
             <br>
-            <img class="w-50" src="live.jpg">
+            <img class="w-50" src="live.jpg"/>
             <br><br>
             <div class="row">
                 <div class="col">
                     <div class="card">
-                        <div class="card-header">
-                            LIVE
-                        </div>
-                        <div class="card-body">
-                            A
-                            B
-                            C
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://techgeek-live.bigbahr.com/">
-                                <button class="btn btn-success  ">
-                                    <fa-icon icon="plus"></fa-icon>
-                                    <span>
-                                    Join now
-                                    </span>
-                                </button>
-                            </a>
+                        <div class="card">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>LIVE</strong>
+                                </div>
+                                <div *ngIf="livesToday != null;else content" class="card-body">
+                                    <div class="card">
+                                        <div class="card-header">Today:{{startDateToday}}</div>
+                                        <div class="card-body">
+                                            Name: {{livesToday.name}}
+                                            Description: {{livesToday.description}}
+                                            Module: {{lastModule?.title}}
+                                        </div>
+                                        <div class="card-footer">
+                                            End:{{endDateToday}}
+                                            <a href="https://techgeek-live.bigbahr.com/">
+                                                <button class="btn btn-success  ">
+                                                    <fa-icon icon="plus"></fa-icon>
+                                                    <span>
+                                                    Join now
+                                                    </span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ng-template #content>
+                                    <strong>No Live Class Today!</strong>
+                                </ng-template>
+                                <div class="card">
+                                    <div *ngIf="livesLast != null;else content2" class="card-body">
+                                        <div class="card">
+                                            <div class="card-header">Next Class:{{ startDate}}</div>
+                                            <div class="card-body">
+                                                Name:{{livesLast.name}}
+                                                Description:{{livesLast.description}}
+                                                Module: {{todayModule?.title}}
+                                            </div>
+                                            <div class="card-footer">
+                                                End:{{endDate}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ng-template #content2>
+                                        <strong>No Up Comming Class programmed!</strong>
+                                    </ng-template>
+                                    <div class="card-footer">
+                                        <a href="https://techgeek-live.bigbahr.com/">
+                                            <button class="btn btn-success  ">
+                                                <span>
+                                                Wait for others
+                                                </span>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            VIDEO
+                            <strong>VIDEO</strong>
                         </div>
                         <div class="card-body">
                             A
@@ -53,7 +93,7 @@
                             C
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-secondary  " [routerLink]="['/']">
+                            <button class="btn btn-secondary" (click)="test()">
                                 <fa-icon icon="plus"></fa-icon>
                                 <span>
                                 Watch
@@ -65,7 +105,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            TEXT
+                            <strong>BOOK</strong>
                         </div>
                         <div class="card-body">
                             A
@@ -84,7 +124,5 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>

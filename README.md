@@ -1,5 +1,11 @@
 # TechGeek
 
+We are using:
+
+1. Nebular Theme and EvaIcons
+   2 Daily Live API
+2. ISO Time to avoid confusion
+
 Make JHipster in Production :
 
 1 - Remove unnessary dependancies, like Elastic-Search

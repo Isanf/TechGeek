@@ -37,6 +37,18 @@ export class LiveService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  findLast(): Observable<EntityResponseType> {
+    return this.http
+      .get<ILive>(`${this.resourceUrl}/Last`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  findToday(): Observable<EntityResponseType> {
+    return this.http
+      .get<ILive>(`${this.resourceUrl}/Today`, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

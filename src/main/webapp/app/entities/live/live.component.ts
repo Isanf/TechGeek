@@ -17,6 +17,7 @@ import { LiveDeleteDialogComponent } from './live-delete-dialog.component';
 })
 export class LiveComponent implements OnInit, OnDestroy {
   lives?: ILive[];
+  livesLast?: ILive | null;
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
