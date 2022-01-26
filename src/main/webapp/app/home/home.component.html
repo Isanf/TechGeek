@@ -22,79 +22,74 @@
             <div class="row">
                 <div class="col">
                     <div class="card">
-                        <div class="card">
+                        <div class="card-header">
+                            <h6>LIVE</h6>
+                        </div>
+                        <div class="card-body">
+                            <h6>The Live program is direct interaction sessions; Ask Question and get the answer in real time.
+                                With our flexible programs, you choose your learning recipe</h6><img src="like.png" height="40px">
+
                             <div class="card">
-                                <div class="card-header">
-                                    <strong>LIVE</strong>
-                                </div>
-                                <div *ngIf="livesToday != null;else content" class="card-body">
-                                    <div class="card">
-                                        <div class="card-header">Today:{{startDateToday}}</div>
-                                        <div class="card-body">
-                                            Name: {{livesToday.name}}<br/>
-                                            Description: {{livesToday.description}}<br/>
-                                            Module: {{lastModule?.title}}<br/>
-                                        </div>
-                                        <div class="card-footer">
-                                            End: {{endDateToday}}<br/>
-                                            <a href="https://techgeek-live.bigbahr.com/">
-                                                <button class="btn btn-success  ">
-                                                    <fa-icon icon="plus"></fa-icon>
-                                                    <span>
-                                                    Join now
-                                                    </span>
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ng-template #content>
-                                    <strong>No Live Class Today!</strong>
-                                </ng-template>
-                                <div class="card">
-                                    <div *ngIf="livesLast != null;else content2" class="card-body">
-                                        <div class="card">
-                                            <div class="card-header">Next Class: {{ startDate}}</div>
-                                            <div class="card-body">
-                                                Name: {{livesLast.name}}<br/>
-                                                Description: {{livesLast.description}}<br/>
-                                                Module: {{todayModule?.title}}<br/>
-                                            </div>
-                                            <div class="card-footer">
-                                                End: {{endDate}}<br/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ng-template #content2>
-                                        <strong>No Up Comming Class programmed!</strong>
-                                    </ng-template>
-                                    <div class="card-footer">
-                                        <a href="https://techgeek-live.bigbahr.com/">
-                                            <button class="btn btn-success  ">
-                                                <span>
-                                                Wait for others
-                                                </span>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
+                                <div class="card-header"><h6> Languages </h6></div>
+                                <div class="card-body"><strong>Java, Python, JavaScript, C#, Swift, TypeScript, Go, Bash, C, ...</strong></div>
+                                <div class="card-footer"></div>
                             </div>
+
+                            <div class="card">
+                                <div class="card-header"><h6> Algorithmic </h6></div>
+                                <div class="card-body"><strong>Pseudo-code, C based algo, Complexity, Binary Search Tree, Abstract Data Types,  ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header"><h6>Data Management</h6></div>
+                                <div class="card-body"><strong>PostgreSQL, MySQL, MongoDB, Neo4J, ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header"><h6>Frameworks</h6></div>
+                                <div class="card-body"><strong>Spring-Boot, Django, ReactJS, AngularJS, Laravel, JHipster, ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header"><h6> DevOps </h6></div>
+                                <div class="card-body"><strong>Docker, Git, Apache-Subversion, Maven, Gradle, npm, PHP Composer, Kubernetes, ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+
+
+                            <div class="card">
+                                <div class="card-header"><h6> Cloud </h6></div>
+                                <div class="card-body"><strong>AWS, Cloudflare, Vultr, Google-Domains, ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-success " [routerLink]="['/live']">
+                                <fa-icon icon="plus"></fa-icon>
+                                <span>
+                                Join now
+                                </span>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <strong>VIDEO</strong>
+                            <h6>VIDEO</h6>
                         </div>
                         <div class="card-body">
-                            A
-                            B
-                            C
+                            <h6>Those who did not attend the live brodcast or simply want Video Tutorials can watch Recorded sessions,
+                                Free Tutorials and as well as Premium Tutorials</h6>
+                            <img src="mac.jpg" height="200px">
+                            <h6>NB: You can watch premium Tutorials only if you have premium account</h6>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-secondary" (click)="test()">
-                                <fa-icon icon="plus"></fa-icon>
+                            <button class="btn btn-danger " [routerLink]="['/video']">
+                                <fa-icon icon="eye"></fa-icon>
                                 <span>
                                 Watch
                                 </span>
@@ -105,15 +100,16 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <strong>BOOK</strong>
+                            <h6>BOOK</h6>
                         </div>
                         <div class="card-body">
-                            A
-                            B
-                            C
+                            <h6>Here you have written Tutorials and free books that you can read</h6>
+                            <img src="screen.png" height="40px">
+                            <!--<h6>NB: The amazing feature is that your reading progress is saved;
+                                so you can continue at any time on where you were stopped</h6>-->
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-primary " [routerLink]="['/']">
+                            <button class="btn btn-primary " [routerLink]="['/course']">
                                 <fa-icon icon="book"></fa-icon>
                                 <span>
                                 Read

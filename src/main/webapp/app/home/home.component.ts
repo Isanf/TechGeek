@@ -42,7 +42,17 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   // Load Data after the Page is fully loaded
   AfterViewInit(): void {
-    this.loadData();
+    this.liveService
+      .findLast()
+      .subscribe(
+        (res: HttpResponse<ILive>) => (
+          (this.livesLast = res.body),
+          (this.startDate = res.body?.startDate?.toISOString()),
+          (this.endDate = res.body?.endDate?.toISOString()),
+          (this.moduleId = res.body?.moduleId),
+          this.moduleService.findOne(this.moduleId).subscribe((result: HttpResponse<any>) => (this.lastModule = result.body))
+        )
+      );
   }
   loadData(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account));

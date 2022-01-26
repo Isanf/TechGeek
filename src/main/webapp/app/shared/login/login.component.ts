@@ -54,7 +54,9 @@ export class LoginModalComponent implements AfterViewInit {
             this.router.url.startsWith('/account/activate') ||
             this.router.url.startsWith('/account/reset/')
           ) {
-            this.router.navigate(['']);
+            this.router.navigate(['live']);
+          } else {
+            this.router.navigateByUrl('live');
           }
         },
         () => (this.authenticationError = true)
@@ -69,5 +71,9 @@ export class LoginModalComponent implements AfterViewInit {
   requestResetPassword(): void {
     this.activeModal.dismiss('to state requestReset');
     this.router.navigate(['/account/reset', 'request']);
+  }
+
+  close(): void {
+    this.router.navigateByUrl('live');
   }
 }

@@ -17,36 +17,35 @@
     <div class="alert alert-warning" id="no-result" *ngIf="videos?.length === 0">
         <span>No videos found</span>
     </div>
-
     <div class="table-responsive" id="entities" *ngIf="videos?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span>Play</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="description"><span>Description</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="source"><span>Source</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="startDate"><span>Start Date</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="endDate"><span>End Date</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="premium"><span>Premium</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="moduleId"><span>Module</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let video of videos ;trackBy: trackId">
-                    <td><a [routerLink]="['/video', video.id, 'view']">{{ video.id }}</a></td>
+                    <td>
+                        <button type="submit"
+                                [routerLink]="['/video', video.id, 'view']"
+                                class="btn btn-info btn-sm">
+                            <video width="320" height="240" >
+                                <source src="{{video.source}}" type="video/mp4">
+                            </video>
+                        </button>
+                    </td>
                     <td>{{ video.name }}</td>
                     <td>{{ video.description }}</td>
-                    <td>{{ video.source }}</td>
                     <td>{{ video.startDate | date:'medium' }}</td>
                     <td>{{ video.endDate | date:'medium' }}</td>
                     <td>{{ video.premium }}</td>
-                    <td>
-                        <div *ngIf="video.moduleId">
-                            <a [routerLink]="['/module', video.moduleId , 'view']" >{{ video.moduleId }}</a>
-                        </div>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
@@ -56,18 +55,20 @@
                                 <span class="d-none d-md-inline">View</span>
                             </button>
 
-                            <button type="submit"
-                                    [routerLink]="['/video', video.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline">Edit</span>
-                            </button>
+                            <div *jhiHasAnyAuthority="['ROLE_ADMIN']">
+                                <button type="submit"
+                                        [routerLink]="['/video', video.id, 'edit']"
+                                        class="btn btn-primary btn-sm">
+                                    <fa-icon icon="pencil-alt"></fa-icon>
+                                    <span class="d-none d-md-inline">Edit</span>
+                                </button>
 
-                            <button type="submit" (click)="delete(video)"
-                                    class="btn btn-danger btn-sm">
-                                <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline">Delete</span>
-                            </button>
+                                <button type="submit" (click)="delete(video)"
+                                        class="btn btn-danger btn-sm">
+                                    <fa-icon icon="times"></fa-icon>
+                                    <span class="d-none d-md-inline">Delete</span>
+                                </button>
+                            </div>
                         </div>
                     </td>
                 </tr>

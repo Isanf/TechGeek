@@ -39,7 +39,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/TechGeek
     username: postgres
-    password: toohard-4U
+    password: root
     hikari:
       poolName: Hikari
       auto-commit: false

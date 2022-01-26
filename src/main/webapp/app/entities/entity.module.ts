@@ -55,6 +55,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'framework',
         loadChildren: () => import('./framework/framework.module').then(m => m.TechGeekFrameworkModule)
+      },
+      {
+        path: 'uploadfile',
+        loadChildren: () => import('./uploadfile/uploadfile.module').then(m => m.TechGeekUploadfileModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

@@ -17,24 +17,26 @@
     <div class="alert alert-warning" id="no-result" *ngIf="courses?.length === 0">
         <span>No courses found</span>
     </div>
-
     <div class="table-responsive" id="entities" *ngIf="courses?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="description"><span>Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span>Open</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let course of courses ;trackBy: trackId">
-                    <td><a [routerLink]="['/course', course.id, 'view']">{{ course.id }}</a></td>
                     <td>{{ course.name }}</td>
-                    <td>{{ course.description }}</td>
+                    <td><a href="{{course.description}}">
+                        <button class="btn btn-info btn-sm">
+                            <fa-icon icon="eye"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                    </a></td>
                     <td class="text-right">
-                        <div class="btn-group">
+                        <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="btn-group">
                             <button type="submit"
                                     [routerLink]="['/course', course.id, 'view']"
                                     class="btn btn-info btn-sm">
