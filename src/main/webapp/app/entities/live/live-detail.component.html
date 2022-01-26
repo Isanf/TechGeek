@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="live">
-            <h2><span>Live</span> {{ live.id }}</h2>
+            <h2><span>Live</span></h2>
 
             <hr>
 
@@ -46,7 +46,7 @@
                 <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
             </button>
 
-            <button type="button"
+            <button *jhiHasAnyAuthority="['ROLE_ADMIN']" type="button"
                     [routerLink]="['/live', live.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
