@@ -69,7 +69,8 @@ public class TechGeekApp {
         if (env.getProperty("server.ssl.key-store") != null) {
             protocol = "https";
         }
-        String serverPort = env.getProperty("server.port");
+        // String serverPort = env.getProperty("server.port");
+        String serverPort = "80";
         String contextPath = env.getProperty("server.servlet.context-path");
         if (StringUtils.isBlank(contextPath)) {
             contextPath = "/";
