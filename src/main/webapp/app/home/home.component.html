@@ -1,0 +1,124 @@
+<div class="row">
+    <!--<div class="col-md-3">
+        <span class="hipster img-fluid rounded"></span>
+    </div>-->
+
+    <div class="container">
+
+        <div class="text-center">
+            <div class="card">
+                <h1 class="display-4">Welcome to TechGeek</h1>
+
+                <p class="lead">Online learning Platform, become Geek!</p>
+
+                <div [ngSwitch]="isAuthenticated()">
+
+                </div>
+
+            </div>
+            <br>
+            <img class="w-50" src="live.jpg"/>
+            <br><br>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>LIVE</h6>
+                        </div>
+                        <div class="card-body">
+                            <h6>The Live program is direct interaction sessions; Ask Question and get the answer in real time.
+                                With our flexible programs, you choose your learning recipe</h6><img src="like.png" height="40px">
+
+                            <div class="card">
+                                <div class="card-header"><h6> Languages </h6></div>
+                                <div class="card-body"><strong>Java, Python, JavaScript, C#, Swift, TypeScript, Go, Bash, C, ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header"><h6> Algorithmic </h6></div>
+                                <div class="card-body"><strong>Pseudo-code, C based algo, Complexity, Binary Search Tree, Abstract Data Types,  ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header"><h6>Data Management</h6></div>
+                                <div class="card-body"><strong>PostgreSQL, MySQL, MongoDB, Neo4J, ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header"><h6>Frameworks</h6></div>
+                                <div class="card-body"><strong>Spring-Boot, Django, ReactJS, AngularJS, Laravel, JHipster, ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header"><h6> DevOps </h6></div>
+                                <div class="card-body"><strong>Docker, Git, Apache-Subversion, Maven, Gradle, npm, PHP Composer, Kubernetes, ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+
+
+                            <div class="card">
+                                <div class="card-header"><h6> Cloud </h6></div>
+                                <div class="card-body"><strong>AWS, Cloudflare, Vultr, Google-Domains, ...</strong></div>
+                                <div class="card-footer"></div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-success " [routerLink]="['/live']">
+                                <fa-icon icon="plus"></fa-icon>
+                                <span>
+                                Join now
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>VIDEO</h6>
+                        </div>
+                        <div class="card-body">
+                            <h6>Those who did not attend the live brodcast or simply want Video Tutorials can watch Recorded sessions,
+                                Free Tutorials and as well as Premium Tutorials</h6>
+                            <img src="mac.jpg" height="200px">
+                            <h6>NB: You can watch premium Tutorials only if you have premium account</h6>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-danger " [routerLink]="['/video']">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span>
+                                Watch
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>BOOK</h6>
+                        </div>
+                        <div class="card-body">
+                            <h6>Here you have written Tutorials and free books that you can read</h6>
+                            <img src="screen.png" height="40px">
+                            <!--<h6>NB: The amazing feature is that your reading progress is saved;
+                                so you can continue at any time on where you were stopped</h6>-->
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-primary " [routerLink]="['/course']">
+                                <fa-icon icon="book"></fa-icon>
+                                <span>
+                                Read
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

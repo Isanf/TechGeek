@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="video">
+            <h2><span>Video</span></h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+            <video width="100%" controls>
+                <source src="{{video.source}}" type="video/mp4">
+            </video>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Name</span></dt>
+                <dd>
+                    <span>{{ video.name }}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{ video.description }}</span>
+                </dd>
+                <dt><span>Source</span></dt>
+                <dt><span>Start Date</span></dt>
+                <dd>
+                    <span>{{ video.startDate }}</span>
+                </dd>
+                <dt><span>End Date</span></dt>
+                <dd>
+                    <span>{{ video.endDate }}</span>
+                </dd>
+                <dt><span>Premium</span></dt>
+                <dd>
+                    <span>{{ video.premium }}</span>
+                </dd>
+                <dt><span>Module</span></dt>
+                <dd>
+                    <div *ngIf="video.moduleId">
+                        <a [routerLink]="['/module', video.moduleId, 'view']">{{ video.moduleId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
+                    [routerLink]="['/video', video.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

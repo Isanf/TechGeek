@@ -1,0 +1,88 @@
+<div>
+    <h2 id="page-heading">
+        <span>Videos</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-video" [routerLink]="['/video/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Video
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="videos?.length === 0">
+        <span>No videos found</span>
+    </div>
+    <div class="table-responsive" id="entities" *ngIf="videos?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="name"><span>Play</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span>Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="startDate"><span>Start Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="endDate"><span>End Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="premium"><span>Premium</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let video of videos ;trackBy: trackId">
+                    <td>
+                        <button type="submit"
+                                [routerLink]="['/video', video.id, 'view']"
+                                class="btn btn-info btn-sm">
+                            <video width="320" height="240" >
+                                <source src="{{video.source}}" type="video/mp4">
+                            </video>
+                        </button>
+                    </td>
+                    <td>{{ video.name }}</td>
+                    <td>{{ video.description }}</td>
+                    <td>{{ video.startDate | date:'medium' }}</td>
+                    <td>{{ video.endDate | date:'medium' }}</td>
+                    <td>{{ video.premium }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/video', video.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <div *jhiHasAnyAuthority="['ROLE_ADMIN']">
+                                <button type="submit"
+                                        [routerLink]="['/video', video.id, 'edit']"
+                                        class="btn btn-primary btn-sm">
+                                    <fa-icon icon="pencil-alt"></fa-icon>
+                                    <span class="d-none d-md-inline">Edit</span>
+                                </button>
+
+                                <button type="submit" (click)="delete(video)"
+                                        class="btn btn-danger btn-sm">
+                                    <fa-icon icon="times"></fa-icon>
+                                    <span class="d-none d-md-inline">Delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="videos?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

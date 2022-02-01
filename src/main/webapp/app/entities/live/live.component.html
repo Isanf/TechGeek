@@ -1,0 +1,190 @@
+<div>
+    <h2 id="page-heading">
+        <span>Lives</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-live" [routerLink]="['/live/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Live
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+    <!--<div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>LIVE</strong>
+                        </div>
+                        <div *ngIf="livesToday != null;else content" class="card-body">
+                            <div class="card">
+                                <div class="card-header">Today:{{startDateToday}}</div>
+                                <div class="card-body">
+                                    Name: {{livesToday.name}}<br/>
+                                    Description: {{livesToday.description}}<br/>
+                                    Module: {{lastModule?.title}}<br/>
+                                </div>
+                                <div class="card-footer">
+                                    End: {{endDateToday}}<br/>
+                                    <a href="https://techgeek-live.bigbahr.com/">
+                                        <button class="btn btn-success  ">
+                                            <fa-icon icon="plus"></fa-icon>
+                                            <span>
+                                                    Join now
+                                                    </span>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #content>
+                            <strong>No Live Class Today!</strong>
+                        </ng-template>
+                        <div class="card">
+                            <div *ngIf="livesLast != null;else content2" class="card-body">
+                                <div class="card">
+                                    <div class="card-header">Next Class: {{ startDate}}</div>
+                                    <div class="card-body">
+                                        Name: {{livesLast.name}}<br/>
+                                        Description: {{livesLast.description}}<br/>
+                                        Module: {{todayModule?.title}}<br/>
+                                    </div>
+                                    <div class="card-footer">
+                                        End: {{endDate}}<br/>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #content2>
+                                <strong>No Up Comming Class programmed!</strong>
+                            </ng-template>
+                            <div class="card-footer">
+                                <a href="https://techgeek-live.bigbahr.com/">
+                                    <button class="btn btn-success  ">
+                                                <span>
+                                                Wait for others
+                                                </span>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <strong>VIDEO</strong>
+                </div>
+                <div class="card-body">
+                    A
+                    B
+                    C
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-secondary" type="submit"
+                            [routerLink]="['/video']"
+                            class="btn btn-info btn-sm">
+                        <fa-icon icon="eye"></fa-icon>
+                        <span class="d-none d-md-inline">Watch</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <strong>BOOK</strong>
+                </div>
+                <div class="card-body">
+                    A
+                    B
+                    C
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary " [routerLink]="['/']">
+                        <fa-icon icon="book"></fa-icon>
+                        <span>
+                                Read
+                                </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="alert alert-warning" id="no-result" *ngIf="lives?.length === 0">
+        <span>No lives found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="lives?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span>Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span>Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="source"><span>Source</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="startDate"><span>Start Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="endDate"><span>End Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="premium"><span>Premium</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="moduleId"><span>Module</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let live of lives ;trackBy: trackId">
+                    <td><a [routerLink]="['/live', live.id, 'view']">{{ live.id }}</a></td>
+                    <td>{{ live.name }}</td>
+                    <td>{{ live.description }}</td>
+                    <td>{{ live.source }}</td>
+                    <td>{{ live.startDate | date:'medium' }}</td>
+                    <td>{{ live.endDate | date:'medium' }}</td>
+                    <td>{{ live.premium }}</td>
+                    <td>
+                        <div *ngIf="live.moduleId">
+                            <a [routerLink]="['/module', live.moduleId , 'view']" >{{ live.moduleId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/live', live.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/live', live.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(live)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="lives?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
