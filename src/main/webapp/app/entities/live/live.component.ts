@@ -10,6 +10,8 @@ import { ILive } from 'app/shared/model/live.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { LiveService } from './live.service';
 import { LiveDeleteDialogComponent } from './live-delete-dialog.component';
+import {IModule} from "app/shared/model/module.model";
+import {ModuleService} from "app/entities/module/module.service";
 
 @Component({
   selector: 'jhi-live',
@@ -25,13 +27,23 @@ export class LiveComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  livesToday?: ILive | null;
+  todayModule?: IModule | null;
+  lastModule?: IModule | null;
+  startDate?: string | undefined;
+  endDate?: string | undefined;
+  startDateToday?: string | undefined;
+  endDateToday?: string | undefined;
+  moduleId?: number;
+  moduleIdToday?: number;
 
   constructor(
     protected liveService: LiveService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected moduleService: ModuleService
   ) {}
 
   loadPage(page?: number): void {
@@ -46,6 +58,30 @@ export class LiveComponent implements OnInit, OnDestroy {
       .subscribe(
         (res: HttpResponse<ILive[]>) => this.onSuccess(res.body, res.headers, pageToLoad),
         () => this.onError()
+      );
+
+    this.liveService
+      .findLast()
+      .subscribe(
+        (res: HttpResponse<ILive>) => (
+          (this.livesLast = res.body),
+            (this.startDate = res.body?.startDate?.toISOString()),
+            (this.endDate = res.body?.endDate?.toISOString()),
+            (this.moduleId = res.body?.moduleId),
+            this.moduleService.findOne(this.moduleId).subscribe((result: HttpResponse<any>) => (this.lastModule = result.body))
+        )
+      );
+
+    this.liveService
+      .findToday()
+      .subscribe(
+        (res: HttpResponse<ILive>) => (
+          (this.livesToday = res.body),
+            (this.startDateToday = res.body?.startDate?.toISOString()),
+            (this.endDateToday = res.body?.endDate?.toISOString()),
+            (this.moduleIdToday = res.body?.moduleId),
+            this.moduleService.findOne(this.moduleIdToday).subscribe((result: HttpResponse<any>) => (this.todayModule = result.body))
+        )
       );
   }
 
